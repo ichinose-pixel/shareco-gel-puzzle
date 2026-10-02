@@ -1,0 +1,70 @@
+name: Publish approved SHARECO LP
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/pages.yml', 'dist/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: shareco-pages
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore and verify approved distribution
+        shell: python
+        run: |
+          import hashlib, pathlib, urllib.request
+          files = {
+            "dist/engine.js": "413325c188c11b93888d909939bfaae8f0f5d661a59975b0067a7c75de57451d",
+            "dist/index.html": "d87b42843979472d14def773b4dfe0ebf58f49e19d8dae2f4345c7d2a6496c60",
+            "dist/fonts.css": "8b033e90e79125bbcab94ae67e66fc07eab3c4399cf837f1ebbfdab14b9935af",
+            "dist/game.js": "c5ade9fd7bb70f4c5dc4b6f638a3956e29fdd07db8820b21ab52d8b73bba5176",
+            "dist/style.css": "4e8039e5b1d6525de5e7c79eb41ab4ae8b3079f9dc47a4e75ab795da8d73b029",
+            "dist/assets/gel-large.jpg": "02f107264b2ace82e523ca668aef25f9b21bd367b5add62c23976202980bc8b3",
+            "dist/assets/noto-600.woff": "b7c2efc5c7b7d2ff203b0b52edc63e82e475dc9b627d55f7097560f21fa1abe2",
+            "dist/assets/noto-700.woff": "08885d9490859a13190033e468c01fc785302d4201a377019d2595a626177c75",
+            "dist/assets/gel-texture.png": "90d6bdbf70f8dbd16877055e7dc0e5cf2e0bcdbf86187a59ada7ee6180242ac6",
+            "dist/assets/logo.png": "be4999dbbb44a44829114a4943d49584dd1f506dc5bb5e112dbc0c01f2d554a9",
+            "dist/assets/gel.jpg": "8a8eab59743cd714133fc87eb5bd48fdb68e93dd2d5f6daebef07c9647801e8b",
+            "dist/assets/noto-400.woff": "4090f6e7982fe01ba635f093d58dfdb21fc1c90cda34d6b03183d5d84a28e96b"
+          }
+          base = 'https://shareco-gel-puzzle.rich-loach-6312.chatgpt.site/'
+          for name, expected in files.items():
+              target = pathlib.Path(name)
+              target.parent.mkdir(parents=True, exist_ok=True)
+              if not target.exists():
+                  request = urllib.request.Request(base + name.removeprefix('dist/'), headers={'User-Agent': 'SHARECO-Pages-Migration'})
+                  with urllib.request.urlopen(request, timeout=60) as response:
+                      data = response.read()
+                  if hashlib.sha256(data).hexdigest() != expected:
+                      raise SystemExit('Source mismatch: ' + name)
+                  target.write_bytes(data)
+              if hashlib.sha256(target.read_bytes()).hexdigest() != expected:
+                  raise SystemExit('Source mismatch: ' + name)
+              print('Verified: ' + name)
+          
+      - name: Preserve verified distribution in repository
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dist
+          if ! git diff --cached --quiet; then
+            git commit -m 'Preserve SHA-256 verified approved distribution'
+            git push
+          fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
