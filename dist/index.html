@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e597ab"><meta name="description" content="ジェルをひと筆でなぞって、すみずみまでぷるん。ひとつのパズルを楽しんだら、シャレコ レスキュースキンジェルの無料サンプルで使い心地をチェック。"><title>ぷるんと一筆書きパズル｜SHARECO</title><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%23e597ab'/%3E%3Ccircle cx='16' cy='16' r='9' fill='white'/%3E%3C/svg%3E"><link rel="stylesheet" href="fonts.css"><link rel="stylesheet" href="style.css"><script src="engine.js" defer></script><script src="game.js" defer></script></head>
+<body>
+<header class="site-header"><img src="assets/logo.png" alt="SHARECO SKIN CARE" width="180" height="15" draggable="false"><span id="header-note">肌に、心に、ひと息を。</span></header>
+<main>
+<section id="experience" class="experience" aria-label="ジェルの一筆書きパズル">
+ <div class="game-shell">
+  <div class="game-head"><span class="game-name">SHARECO · PLAY & CARE</span><button id="sound" class="icon-button" aria-pressed="false" aria-label="効果音をオンにする">音 OFF</button></div>
+  <div class="play-heading"><p>すーっとなぞる、一筆書き</p><h1>ぷるんと、<strong>ひと筆。</strong></h1></div>
+  <div class="stage-line"><span id="stage-label">ぜんぶ、つなげられる？</span><b id="cell-count">0<span> / 18</span></b></div>
+  <div class="board-wrap"><canvas id="board" width="600" height="510" tabindex="0" aria-label="ジェルから上下左右になぞって、すべてのマスを一筆でつなぎます。直前のマスへ戻ると巻き戻せます。矢印キーでも操作できます。"></canvas>
+   <div id="clear-screen" class="overlay clear-screen" hidden><p class="eyebrow">ALL CLEAR</p><h2>すーっと、ひと筆。</h2><p>次は、あなたの肌で。</p><img src="assets/gel-large.jpg" alt="シャレコ レスキュースキンジェル" width="170" height="170" draggable="false"></div>
+  </div>
+  <div class="game-bottom"><div id="start-screen" class="start-screen"><button id="start" class="primary">なぞって遊ぶ</button><p class="start-note">同じマスは1回だけ。戻ってやり直せます。</p></div>
+  <div class="progress-label"><span id="instruction">ジェルから、白いマスをつなごう。</span><b id="progress-count">0%</b></div><div class="progress-track"><div id="progress-bar"></div></div>
+  <div class="controls"><button id="undo" class="sub-button" disabled><span aria-hidden="true">↶</span> ひとつ戻す</button><button id="hint" class="sub-button"><span aria-hidden="true">✧</span> ヒント</button><button id="restart" class="sub-button"><span aria-hidden="true">↻</span> はじめから</button></div>
+  <details class="keyboard-controls"><summary>ボタンで操作する</summary><div class="direction-pad" aria-label="移動ボタン"><button data-dir="left" aria-label="左へ">←</button><button data-dir="up" aria-label="上へ">↑</button><button data-dir="down" aria-label="下へ">↓</button><button data-dir="right" aria-label="右へ">→</button></div></details>
+  </div>
+  <div class="game-foot"><span>1問だけ · 時間制限なし</span><button id="skip" class="text-button">ジェルについて見る</button></div>
+ </div><p class="game-caption">ゲームはイメージです。商品の効果を表すものではありません。</p>
+</section>
+<section id="product" class="product-section" hidden aria-labelledby="product-title">
+ <div class="product-hero">
+  <div class="product-photo"><img src="assets/gel-large.jpg" alt="シャレコ レスキュースキンジェル本品のイメージ" width="1024" height="1024" draggable="false"><span>本品イメージ。お届けするサンプルは3gです。</span></div>
+  <div class="product-hero-copy"><p class="eyebrow" id="result-kicker">PLAY & CARE</p><h2 id="product-title" tabindex="-1">肌にも、<br><em>心地いい</em>ひとぬりを。</h2><p class="product-lead">乾燥が気になる肌に。<br>すーっと伸びるジェルの使い心地、<br>まずは少量から試してみませんか。</p><p class="product-name">シャレコ レスキュースキンジェル</p><div class="offer-line"><span>お一人さま1回限り</span><b>無料サンプル <strong>3</strong>g</b></div><a class="primary sample-link hero-cta" href="https://www.shareco.co.jp/lp/rescue_sample_formblg/">無料サンプルを試してみる</a><p class="cta-micro">シャレコ公式の応募ページへ</p></div>
+ </div>
+ <div class="care-intro"><p class="eyebrow">FEEL IT ON YOUR SKIN</p><h2>毎日使うものだから、<br>肌との相性を大切に。</h2><p>塗り心地は？　質感は？　自分の肌に合う？<br>気になることを、無料サンプルで確かめてください。</p></div>
+ <div class="texture-story"><div class="texture-photo"><img src="assets/gel-texture.png" alt="透明なジェルのテクスチャーイメージ" width="1024" height="1024" loading="lazy" draggable="false"><span>テクスチャーイメージ</span></div><div class="texture-copy"><span class="chapter">01 / TEXTURE</span><h3>すーっと伸びる。<br>そっと、肌になじませる。</h3><p>少量でもよく伸びるジェルタイプ。<br>腕や脚などの気になる部位で、<br>その塗り心地をお試しいただけます。</p><div class="ingredient"><span>配合成分</span><b>キチンナノファイバー</b><p>鳥取大学で研究開発された成分を配合。</p></div></div></div>
+ <div class="consult-story"><div><span class="chapter">02 / PERSONAL CARE</span><h3>肌のこと、<br>ひとりで悩まなくていい。</h3></div><div><p>使い方や肌のお悩みは、<br>シャレコのカウンセラーへ。</p><p>LINE・メール・電話で、ご相談をお受けしています。あなたに合うケアを、一緒に考えます。</p><span class="consult-label">無料の肌相談をご用意しています</span></div></div>
+ <div class="sample-section" id="sample"><div class="sample-inner"><p class="eyebrow">YOUR FIRST SHARECO</p><h2>まずは、あなたの肌で。</h2><div class="sample-offer"><div><span>シャレコ レスキュースキンジェル</span><strong>無料サンプル</strong><small>お一人さま1回限り</small></div><div class="sample-size">3<span>g</span></div></div><p>塗り心地・質感のお試しや、<br>パッチテストにお使いいただけます。</p><a class="primary sample-link final-cta" href="https://www.shareco.co.jp/lp/rescue_sample_formblg/">無料サンプルを申し込む</a><p class="sample-note">シャレコ公式の応募ページへ進みます。<br>お申し込みの方にはメルマガ「シャレコレター♪」が届きます。<br>応募条件・詳細は遷移先でご確認ください。</p></div></div>
+ <div class="closing"><img src="assets/logo.png" alt="SHARECO SKIN CARE" width="180" height="15" draggable="false"><p>あなたの肌に、あなたに合うケアを。</p><button id="replay" class="text-button">もう一度、パズルで遊ぶ</button></div>
+</section>
+</main><footer><a href="https://www.shareco.co.jp/" target="_blank" rel="noopener">シャレコ公式サイト</a><a href="https://www.shareco.co.jp/company/guide/" target="_blank" rel="noopener">会社案内</a><span>SHARECO SKIN CARE</span></footer>
+<div id="sticky-cta" hidden><span>無料サンプル <b>3g</b></span><a class="primary sample-link" href="https://www.shareco.co.jp/lp/rescue_sample_formblg/">試してみる</a></div><div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>
